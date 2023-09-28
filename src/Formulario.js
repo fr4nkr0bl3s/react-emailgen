@@ -291,6 +291,7 @@ function Formulario() {
   <StyledTextArea
     value={instruccionesAdicionales}
     onChange={(e) => setInstruccionesAdicionales(e.target.value)}
+    placeholder="Ej.: email corto y conciso, tutear al cliente, usar tono comercial, etc."  
   ></StyledTextArea>
 </StyledLabel>
 <br/>
