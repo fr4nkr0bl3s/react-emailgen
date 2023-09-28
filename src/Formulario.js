@@ -74,7 +74,12 @@ const Column = styled.div`
 const Row = styled.div`
   display: flex;
   gap: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
+
 
 // Animación del Spinner de carga
 const spin = keyframes`
