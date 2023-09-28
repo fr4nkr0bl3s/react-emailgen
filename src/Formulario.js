@@ -167,7 +167,7 @@ function Formulario() {
   return (
     <Container>
       <Title>Haciendo la tarea de Lulú 🤯</Title>
-      <p>Esta App te ayuda a crear emails personalizados sin -casi- mover un dedo, ¡ideal para alcahuetear la pereza y sorprender a tus clientes!</p>
+      <p>Esta App te ayuda a crear emails personalizados para proyectos inmobiliarios sin -casi- mover un dedo, ¡ideal para alcahuetear la pereza y sorprender a tus clientes!</p>
       <br/>
       <StyledForm onSubmit={handleSubmit}>      
       <StyledLabel>
@@ -176,6 +176,7 @@ function Formulario() {
       type="text"
       value={nombreCliente}
       onChange={(e) => setNombreCliente(e.target.value)}
+      placeholder="A quien va dirigido el email"
       required
     />
   </StyledLabel>      
@@ -188,6 +189,7 @@ function Formulario() {
       type="text"
       value={nombreProyecto}
       onChange={(e) => setNombreProyecto(e.target.value)}
+      placeholder="Proyecto Inmobiliario"
       required
     />
   </StyledLabel>      
@@ -268,6 +270,7 @@ function Formulario() {
   <StyledTextArea
     value={amenidades}
     onChange={(e) => setAmenidades(e.target.value)}
+    placeholder="Ej. Piscina, Jacuzzi, Seguridad 24/7, Gimnasio, etc."  
   ></StyledTextArea>
 </StyledLabel>
 </Column>
@@ -281,6 +284,7 @@ function Formulario() {
     type="text"
     value={financiamiento}
     onChange={(e) => setFinanciamiento(e.target.value)}
+    placeholder="Ej. 10% de entrada, 20% durante construcción, 70% recursos propios."
   />
 </StyledLabel>
 </Column>
