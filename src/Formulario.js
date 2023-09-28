@@ -3,7 +3,7 @@ import axios from 'axios'; //
 import VistaPrevia from './VistaPrevia';
 import styled, { keyframes } from 'styled-components';
 
-// Definir colores
+// Definir colores y estilos
 const backgroundColor = '#F9F9F9'; // Color de fondo claro
 const buttonColor = '#1d3465'; // Color del botón
 const borderColor = '#ccc'; // Color del borde de los campos de entrada
@@ -32,27 +32,48 @@ const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 50%;
+  width: 100%;
 `;
 
 const StyledInput = styled.input`
   padding: 10px;
   border-radius: 4px;
   border: 1px solid ${borderColor};
+  
 `;
 
 const StyledTextArea = styled.textarea`
   padding: 10px;
   border-radius: 4px;
   border: 1px solid ${borderColor};
+  width: auto;
 `;
 
 const StyledButton = styled.input`
-  padding: 10px;
-  border-radius: 4px;
-  background-color: ${buttonColor};
-  color: #fff;
-  cursor: pointer;
+padding: 10px;
+border-radius: 4px;
+background-color: ${buttonColor};
+color: #fff;
+font-size: 1rem;
+font-weight:600;
+cursor: pointer;
+transition: background-color 0.2s;
+
+&:hover {
+  background-color: #1C77DF;
+}
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: auto;
+`;
+
+const Row = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 // Animación del Spinner de carga
@@ -145,92 +166,126 @@ function Formulario() {
 
   return (
     <Container>
-      <Title>App para alcahuetear la pereza de Lulú ;)</Title>
-      <StyledForm onSubmit={handleSubmit}>
+      <Title>Haciendo la tarea de Lulú 🤯</Title>
+      <p>Esta App te ayuda a crear emails personalizados sin -casi- mover un dedo, ¡ideal para alcahuetear la pereza y sorprender a tus clientes!</p>
+      <br/>
+      <StyledForm onSubmit={handleSubmit}>      
       <StyledLabel>
-    *Nombre del Cliente:
+    *Cliente:
     <StyledInput
       type="text"
       value={nombreCliente}
       onChange={(e) => setNombreCliente(e.target.value)}
       required
     />
-  </StyledLabel>
+  </StyledLabel>      
       <br/>
+      <Row>
+        <Column>        
       <StyledLabel>
-    *Nombre del Proyecto:
+    *Proyecto:
     <StyledInput
       type="text"
       value={nombreProyecto}
       onChange={(e) => setNombreProyecto(e.target.value)}
       required
     />
-  </StyledLabel>
+  </StyledLabel>      
+      </Column>
       <br/>
+      <Column>      
       <StyledLabel>
     *Ubicación:
     <StyledInput
       type="text"
       value={ubicacion}
       onChange={(e) => setUbicacion(e.target.value)}
+      placeholder="Ciudad"
       required
     />
-  </StyledLabel>
+  </StyledLabel>        
+        </Column>
+      </Row>  
       <br/>
+      <Row>
+        <Column> 
       <StyledLabel>
-  Detalles de Ubicación:
-  <StyledTextArea
+  Detalles Ubicación:
+  <StyledInput
+    type="text"
     value={detallesUbicacion}
     onChange={(e) => setDetallesUbicacion(e.target.value)}
-  ></StyledTextArea>
+    placeholder="Zona, Barrio, Características del área"
+  />
 </StyledLabel>
+</Column>
 <br/>
-
+  <Column>
 <StyledLabel>
-  Tipos de Viviendas:
-  <StyledTextArea
+  Viviendas:
+  <StyledInput
+    type="text"
     value={tiposViviendas}
     onChange={(e) => setTiposViviendas(e.target.value)}
-  ></StyledTextArea>
+    placeholder="Casas, Departamentos, Terrenos, etc."
+  />
 </StyledLabel>
+</Column>
+</Row>
 <br/>
-
+<Row>
+<Column>
 <StyledLabel>
-  Rango de Áreas:
-  <StyledTextArea
+  Rango Áreas:
+  <StyledInput
+    type="text"
     value={rangosArea}
     onChange={(e) => setRangosArea(e.target.value)}
-  ></StyledTextArea>
+    placeholder="Ej. De 100m² a 200m²"
+  />
 </StyledLabel>
+</Column>
+
 <br/>
 
+  <Column>
 <StyledLabel>
-  Rango de Precios:
-  <StyledTextArea
+  Rango Precios:
+  <StyledInput
+    type="text"
     value={rangoPrecios}
     onChange={(e) => setRangoPrecios(e.target.value)}
-  ></StyledTextArea>
+    placeholder="Ej. Desde $100,000 Hasta $200,000"
+  />
 </StyledLabel>
+</Column>
+</Row>
 <br/>
-
+<Row>
+<Column>
 <StyledLabel>
-  Amenidades Destacadas:
+  Amenidades:
   <StyledTextArea
     value={amenidades}
     onChange={(e) => setAmenidades(e.target.value)}
   ></StyledTextArea>
 </StyledLabel>
+</Column>
+
 <br/>
 
+  <Column>
 <StyledLabel>
-  Financiamiento Disponible:
-  <StyledTextArea
+  Financiamiento:
+  <StyledInput
+    type="text"
     value={financiamiento}
     onChange={(e) => setFinanciamiento(e.target.value)}
-  ></StyledTextArea>
+  />
 </StyledLabel>
+</Column>
+</Row>
 <br/>
-
 <StyledLabel>
   Instrucciones Adicionales:
   <StyledTextArea
@@ -239,18 +294,23 @@ function Formulario() {
   ></StyledTextArea>
 </StyledLabel>
 <br/>
+
+
       <StyledLabel>
-        Llave de OpenAI:
+        *Llave de OpenAI:
         <StyledInput
           type="text"
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
+          placeholder="sk-123456789abczxyf"
           
         />
       </StyledLabel>
       <br/>
+            
       <StyledButton type="submit" value="Generar Email"/>
       </StyledForm>
+      
 
     {cargando && (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50px' }}>
