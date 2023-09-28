@@ -145,7 +145,7 @@ function Formulario() {
 
   return (
     <Container>
-      <Title>Generador de Emails</Title>
+      <Title>App para alcahuetear la pereza de Lulú ;)</Title>
       <StyledForm onSubmit={handleSubmit}>
       <StyledLabel>
     *Nombre del Cliente:
